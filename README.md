@@ -22,5 +22,14 @@ O projeto é Maven já está com todas as dependências no projeto, somente impo
 A classe principal de execução do SpringBoot é a GestaotarefasApplication.
 Somente clicar com o botão direito e ir em Run AS – SpringBoot Application.
 
+A base de dados sobe em memória pela própria dependência do H2 no POM.xml.
+Ela carrega alguns registros iniciais toda vez que a aplicação sobe.
+
+Para acesso na base de dados verificar as informações de conexão no arquivo application.yml.
+
+Acesso na base URL e porta, pode ser acessado pelo browser.
+
+
+
 
 
