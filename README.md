@@ -44,6 +44,41 @@ Java 17, SpringBoot 3.5.5, com as dependências listadas abaixo:
 - Acesso na base URL e porta, pode ser acessado pelo browser.
 
 
+SELECT 
+    t.id,
+    t.titulo,
+    t.status,
+    t.data_criacao,
+    p.nome AS nome_projeto
+FROM 
+    tarefa t
+INNER JOIN 
+    projeto p ON t.id_projeto = p.id_projeto
+ORDER BY 
+    t.data_criacao DESC;
+
+SELECT 
+    * 
+FROM 
+    tarefa 
+ORDER BY 
+    data_criacao DESC 
+LIMIT 3 OFFSET 3;
+
+SELECT 
+    t.id,
+    t.titulo,
+    t.status,
+    t.data_criacao,
+    p.nome AS nome_projeto
+FROM 
+    tarefa t
+JOIN 
+    projeto p ON t.id_projeto = p.id_projeto
+ORDER BY 
+    t.data_criacao DESC
+LIMIT 2 OFFSET 0;
+
 
 
 
