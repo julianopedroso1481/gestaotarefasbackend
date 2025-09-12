@@ -1,6 +1,7 @@
 package br.com.gestaotarefas.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gestaotarefas.dto.RequestTarefaDTO;
+import br.com.gestaotarefas.dto.ResponseProjetoDTO;
 import br.com.gestaotarefas.dto.ResponseTarefaDTO;
 import br.com.gestaotarefas.model.ProjetoModel;
 import br.com.gestaotarefas.model.TarefaModel;
@@ -37,13 +39,28 @@ public class TarefaService {
 
 			List<TarefaModel> listaTarefas = tarefaRepository.findAll();
 
-			modelMapper.getConfiguration().setFieldMatchingEnabled(true).setFieldAccessLevel(AccessLevel.PRIVATE)
-					.setMatchingStrategy(MatchingStrategies.STRICT);
+			List<ResponseTarefaDTO> tarefaDTOs = listaTarefas.stream().map(tarefa -> {
+	            ResponseTarefaDTO dto = new ResponseTarefaDTO();
 
-			List<ResponseTarefaDTO> tarefaDTOs = modelMapper.map(listaTarefas,
-					new TypeToken<List<ResponseTarefaDTO>>() {
-					}.getType());
-			return tarefaDTOs;
+	            dto.setId(tarefa.getId());
+	            dto.setTitulo(tarefa.getTitulo());
+	            dto.setDescricao(tarefa.getDescricao());
+	            dto.setStatus(tarefa.getStatus());
+	            dto.setDataCriacao(tarefa.getDataCriacao());
+
+	            // Mapeando o projeto
+	            if (tarefa.getProjeto() != null) {
+	                ResponseProjetoDTO projetoDTO = new ResponseProjetoDTO();
+	                projetoDTO.setId(tarefa.getProjeto().getId());
+	                projetoDTO.setNome(tarefa.getProjeto().getNome());
+
+	                dto.setProjeto(projetoDTO);
+	            }
+
+	            return dto;
+	        }).collect(Collectors.toList());
+
+	        return tarefaDTOs;
 
 		} catch (Exception e) {
 			e.printStackTrace();
