@@ -18,6 +18,7 @@ public class RequestTarefaDTO  implements Serializable {
 	private String descricao;
 	private String status;
 	private Date dataCriacao;	
+	private RequestProjetoDTO projeto;
 	
 	
 	public Long getId() {
@@ -79,5 +80,15 @@ public class RequestTarefaDTO  implements Serializable {
 	public String toString() {
 	    return "RequestTarefaDTO [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao +
 	           ", status=" + status + ", dataCriacao=" + dataCriacao + "]";
+	}
+
+
+	public RequestProjetoDTO getProjeto() {
+		return projeto;
+	}
+
+
+	public void setProjeto(RequestProjetoDTO projeto) {
+		this.projeto = projeto;
 	}
 }

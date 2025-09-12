@@ -80,5 +80,76 @@ ORDER BY
 LIMIT 2 OFFSET 0;
 
 
+SELECT 
+    t.id AS id_tarefa,
+    t.titulo,
+    t.status,
+    t.data_criacao,
+    p.id_projeto,
+    p.nome AS nome_projeto
+FROM 
+    tarefa t
+JOIN 
+    projeto p ON t.id_projeto = p.id_projeto
+ORDER BY 
+    t.data_criacao DESC;
 
 
+SELECT 
+    t.*
+FROM 
+    tarefa t
+ORDER BY 
+    t.id
+LIMIT :tamanhoPagina OFFSET (:paginaAtual - 1) * :tamanhoPagina;
+
+-- Total de registros (usado para calcular total de páginas)
+SELECT COUNT(*) AS total_registros FROM tarefa;
+
+
+SELECT 
+    status,
+    COUNT(*) AS total_por_status
+FROM 
+    tarefa
+GROUP BY 
+    status
+ORDER BY 
+    total_por_status DESC;
+SELECT 
+    status,
+    COUNT(*) AS total_por_status
+FROM 
+    tarefa
+GROUP BY 
+    status
+ORDER BY 
+    total_por_status DESC;
+
+
+SELECT 
+    t.id AS id_tarefa,
+    t.titulo,
+    t.status,
+    t.data_criacao,
+    p.id_projeto,
+    p.nome AS nome_projeto
+FROM 
+    tarefa t
+JOIN 
+    projeto p ON t.id_projeto = p.id_projeto
+ORDER BY 
+    t.data_criacao DESC;
+
+
+
+SELECT 
+    t.*
+FROM 
+    tarefa t
+ORDER BY 
+    t.id
+LIMIT :tamanhoPagina OFFSET (:paginaAtual - 1) * :tamanhoPagina;
+
+-- Total de registros (usado para calcular total de páginas)
+SELECT COUNT(*) AS total_registros FROM tarefa;
