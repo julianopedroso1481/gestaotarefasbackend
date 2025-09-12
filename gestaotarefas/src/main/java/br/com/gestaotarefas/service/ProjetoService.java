@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gestaotarefas.dto.ResponseProjetoDTO;
+import br.com.gestaotarefas.dto.ResponseTarefaDTO;
 import br.com.gestaotarefas.model.ProjetoModel;
 import br.com.gestaotarefas.repositories.ProjetoRepository;
 
@@ -45,4 +46,9 @@ public class ProjetoService {
 		return null;
 
 	}
+	
+	public ProjetoModel findByIdProjeto(Long idProjeto) {
+		return projetoRepository.findByIdProjeto(idProjeto);
+	}
+
 }

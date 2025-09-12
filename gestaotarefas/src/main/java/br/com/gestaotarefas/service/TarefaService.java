@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.gestaotarefas.dto.RequestTarefaDTO;
 import br.com.gestaotarefas.dto.ResponseTarefaDTO;
+import br.com.gestaotarefas.model.ProjetoModel;
 import br.com.gestaotarefas.model.TarefaModel;
+import br.com.gestaotarefas.repositories.ProjetoRepository;
 import br.com.gestaotarefas.repositories.TarefaRepository;
 
 @Service
@@ -19,6 +21,9 @@ public class TarefaService {
 
 	@Autowired
 	private TarefaRepository tarefaRepository;
+	
+	@Autowired
+	private ProjetoRepository projetoRepository;
 
 	@Autowired
 	private final ModelMapper modelMapper;
@@ -69,7 +74,11 @@ public class TarefaService {
 			model.setDescricao(tarefaDTO.getDescricao());
 			model.setStatus(tarefaDTO.getStatus());
 			model.setDataCriacao(tarefaDTO.getDataCriacao());
-
+			if(tarefaDTO.getProjeto() != null) {
+				
+				ProjetoModel projeto = projetoRepository.findByIdProjeto(tarefaDTO.getProjeto().getId());
+				model.setProjeto(projeto);
+			}
 			TarefaModel savedEntity = (TarefaModel)tarefaRepository.save(model);
 
 			if (savedEntity != null && savedEntity.getId() != null) {

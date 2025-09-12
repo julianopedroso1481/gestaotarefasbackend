@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,8 +43,8 @@ public class TarefaModel implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_CRIACAO")
 	private Date dataCriacao;
-	@ManyToOne // Muitos Pedidos para Um Cliente
-    @JoinColumn(name = "ID_PROJETO") // Nome da coluna de chave estrangeira na tabela Pedido
+	@ManyToOne(cascade =  CascadeType.ALL)
+    @JoinColumn(name = "ID_PROJETO") 
     private ProjetoModel projeto;
 	
 	public Long getId() {
