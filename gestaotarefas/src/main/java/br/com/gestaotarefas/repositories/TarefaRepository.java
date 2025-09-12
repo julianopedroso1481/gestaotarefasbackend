@@ -17,4 +17,7 @@ public interface TarefaRepository extends JpaRepository<TarefaModel, Long>{
 	@Query("SELECT t FROM TarefaModel t WHERE UPPER(t.titulo) = UPPER(:tituloTarefa)")
 	List<TarefaModel> findByTituloTarefa(String tituloTarefa);	
 	 
+	@Query("SELECT t FROM TarefaModel t WHERE UPPER(t.projeto.nome) = UPPER(:nomeProjeto)")
+	List<TarefaModel> findByTarefaPorNomeProjeto(String nomeProjeto);	
+	 
 }

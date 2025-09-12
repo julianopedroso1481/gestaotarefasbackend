@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -39,6 +40,19 @@ public class TarefaController {
         
 		return new ResponseEntity<Object>(jsonArrayString, HttpStatus.OK);
 	}
+	
+	@GetMapping(path = "/buscartarefapornomeprojeto", produces=MediaType.APPLICATION_JSON_VALUE)	
+	public ResponseEntity<Object> getListarTarefasPorNomeProjeto(@RequestParam String nomeProjeto){
+		List<ResponseTarefaDTO> tarefas = tarefaService.findByAllTarefaPorNomeProjeto(nomeProjeto);
+		
+		if(tarefas == null || tarefas.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não existe tarefas cadastradas.");
+		}
+		Gson gson = new Gson();
+        String jsonArrayString = gson.toJson(tarefas);
+        
+		return new ResponseEntity<Object>(jsonArrayString, HttpStatus.OK);
+	}	
 	
 	@DeleteMapping("/{id}")	
     public ResponseEntity<String> deletarTarefa(@PathVariable Long id) {
