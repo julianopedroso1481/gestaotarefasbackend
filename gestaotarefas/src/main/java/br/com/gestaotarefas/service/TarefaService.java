@@ -1,7 +1,6 @@
 package br.com.gestaotarefas.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -52,15 +51,6 @@ public class TarefaService {
 		return tarefaRepository.findById(idTarefa)
                 .map(model -> modelMapper.map(model, ResponseTarefaDTO.class))
                 .orElse(null);
-	}
-
-	public List<ResponseTarefaDTO> findUsersByTituloTarefa(String tituloTarefa) {
-		List<TarefaModel> tarefas = tarefaRepository.findByTituloTarefa(tituloTarefa);
-
-        return tarefas.stream()
-                .map(model -> modelMapper.map(model, ResponseTarefaDTO.class))
-                .collect(Collectors.toList());
-    
 	}
 
 	public boolean deletarTarefaPorId(Long id) {
