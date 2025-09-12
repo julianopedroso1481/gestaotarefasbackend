@@ -43,7 +43,7 @@ public class TarefaModel implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	@Column(name = "DATA_CRIACAO")
 	private Date dataCriacao;
-	@ManyToOne(cascade =  CascadeType.ALL)
+	@ManyToOne(cascade =  CascadeType.PERSIST)
     @JoinColumn(name = "ID_PROJETO") 
     private ProjetoModel projeto;
 	
