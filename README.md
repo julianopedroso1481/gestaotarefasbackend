@@ -45,7 +45,7 @@ Java 17, SpringBoot 3.5.5, com as dependências listadas abaixo:
 
 
 SELECT 
-    t.id,
+    t.id_tarefa,
     t.titulo,
     t.status,
     t.data_criacao,
@@ -66,7 +66,7 @@ ORDER BY
 LIMIT 3 OFFSET 3;
 
 SELECT 
-    t.id,
+    t.id_tarefa,
     t.titulo,
     t.status,
     t.data_criacao,
@@ -81,7 +81,7 @@ LIMIT 2 OFFSET 0;
 
 
 SELECT 
-    t.id AS id_tarefa,
+    t.id_tarefa AS id_tarefa,
     t.titulo,
     t.status,
     t.data_criacao,
@@ -128,7 +128,7 @@ ORDER BY
 
 
 SELECT 
-    t.id AS id_tarefa,
+    t.id_tarefa AS id_tarefa,
     t.titulo,
     t.status,
     t.data_criacao,
@@ -148,7 +148,7 @@ SELECT
 FROM 
     tarefa t
 ORDER BY 
-    t.id
+    t.id_tarefa
 LIMIT :tamanhoPagina OFFSET (:paginaAtual - 1) * :tamanhoPagina;
 
 -- Total de registros (usado para calcular total de páginas)
